@@ -7,6 +7,7 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
+import { Toaster } from "~/components/ui/sonner"
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -32,7 +33,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				{children}
+				<div className="hidden lg:block">{children}</div>
+				<div className="flex lg:hidden flex-col items-center justify-center h-screen">
+					<h1 className="text-3xl leading-12 font-bold font-display text-gray-950">This app is not supported on mobile</h1>
+					<p className="text-sm leading-6 text-gray-800">Please use a desktop browser</p>
+				</div>
+
+				<Toaster />
 				<ScrollRestoration />
 				<Scripts />
 			</body>
